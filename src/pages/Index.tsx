@@ -27,7 +27,7 @@ const Index = () => {
             <p className="text-xl text-muted-foreground mb-6">Digital Marketer</p>
 
             <div className="mb-8">
-              <h2 className="text-lg font-semibold mb-4">I turn Your Ecommerce Traffic Into Sales With High-Converting Ad Creatives + Landing Pages Built for Results, stop wasting money on ads that don't work</h2>
+              <h2 className="text-lg font-semibold mb-4">I turn Your Ecommerce Traffic Into Sales With High-Converting AI-Driven Ad Creatives + Landing Pages Built for Results, stop wasting money on ads that don't work</h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
               Most ecommerce brands waste thousands on ads that look pretty but don't actually sell anything. I fix that problem. I create ad creatives and landing pages that actually turn your website visitors into paying customers. I use proven psychology and smart AI tools to build campaigns that connect with real buyers.
               </p>
@@ -83,7 +83,7 @@ const Index = () => {
             </a>
 
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/theazizmoh/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-between p-4 bg-card border border-border rounded-lg hover:bg-secondary/50 transition-colors group"
