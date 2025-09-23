@@ -1,5 +1,83 @@
 // Sanity Schema Definitions
-// Copy these to your Sanity Studio schema files
+// JavaScript version of the schemas
+
+export const blockContent = {
+  title: 'Block Content',
+  name: 'blockContent',
+  type: 'array',
+  of: [
+    {
+      title: 'Block',
+      type: 'block',
+      styles: [
+        { title: 'Normal', value: 'normal' },
+        { title: 'H1', value: 'h1' },
+        { title: 'H2', value: 'h2' },
+        { title: 'H3', value: 'h3' },
+        { title: 'Quote', value: 'blockquote' },
+      ],
+      lists: [
+        { title: 'Bullet', value: 'bullet' },
+        { title: 'Numbered', value: 'number' },
+      ],
+      marks: {
+        decorators: [
+          { title: 'Strong', value: 'strong' },
+          { title: 'Emphasis', value: 'em' },
+          { title: 'Code', value: 'code' },
+        ],
+        annotations: [
+          {
+            title: 'URL',
+            name: 'link',
+            type: 'object',
+            fields: [
+              {
+                title: 'URL',
+                name: 'href',
+                type: 'url',
+              },
+            ],
+          },
+        ],
+      },
+    },
+    {
+      type: 'image',
+      options: { hotspot: true },
+    },
+    {
+      type: 'object',
+      name: 'codeBlock',
+      title: 'Code Block',
+      fields: [
+        {
+          name: 'language',
+          title: 'Language',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'JavaScript', value: 'javascript' },
+              { title: 'TypeScript', value: 'typescript' },
+              { title: 'HTML', value: 'html' },
+              { title: 'CSS', value: 'css' },
+              { title: 'Python', value: 'python' },
+              { title: 'Bash', value: 'bash' },
+              { title: 'JSON', value: 'json' },
+            ],
+          },
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: 'code',
+          title: 'Code',
+          type: 'text',
+          validation: (Rule) => Rule.required(),
+        },
+      ],
+    },
+  ],
+};
 
 export const postSchema = {
   name: 'post',
@@ -10,7 +88,7 @@ export const postSchema = {
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (Rule: any) => Rule.required()
+      validation: (Rule) => Rule.required()
     },
     {
       name: 'slug',
@@ -20,14 +98,14 @@ export const postSchema = {
         source: 'title',
         maxLength: 96
       },
-      validation: (Rule: any) => Rule.required()
+      validation: (Rule) => Rule.required()
     },
     {
       name: 'excerpt',
       title: 'Excerpt',
       type: 'text',
       rows: 4,
-      validation: (Rule: any) => Rule.required().max(200)
+      validation: (Rule) => Rule.required().max(200)
     },
     {
       name: 'author',
@@ -47,7 +125,7 @@ export const postSchema = {
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',
-      validation: (Rule: any) => Rule.required()
+      validation: (Rule) => Rule.required()
     },
     {
       name: 'body',
@@ -61,7 +139,7 @@ export const postSchema = {
       author: 'author.name',
       media: 'mainImage'
     },
-    prepare(selection: any) {
+    prepare(selection) {
       const { author } = selection;
       return Object.assign({}, selection, {
         subtitle: author && `by ${author}`
@@ -79,7 +157,7 @@ export const authorSchema = {
       name: 'name',
       title: 'Name',
       type: 'string',
-      validation: (Rule: any) => Rule.required()
+      validation: (Rule) => Rule.required()
     },
     {
       name: 'slug',
@@ -129,14 +207,14 @@ export const projectSchema = {
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (Rule: any) => Rule.required()
+      validation: (Rule) => Rule.required()
     },
     {
       name: 'description',
       title: 'Description',
       type: 'text',
       rows: 4,
-      validation: (Rule: any) => Rule.required()
+      validation: (Rule) => Rule.required()
     },
     {
       name: 'image',
@@ -145,7 +223,7 @@ export const projectSchema = {
       options: {
         hotspot: true
       },
-      validation: (Rule: any) => Rule.required()
+      validation: (Rule) => Rule.required()
     },
     {
       name: 'technologies',
@@ -170,7 +248,7 @@ export const projectSchema = {
       name: 'order',
       title: 'Display Order',
       type: 'number',
-      validation: (Rule: any) => Rule.required().integer().positive()
+      validation: (Rule) => Rule.required().integer().positive()
     }
   ],
   orderings: [
@@ -191,14 +269,14 @@ export const serviceSchema = {
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (Rule: any) => Rule.required()
+      validation: (Rule) => Rule.required()
     },
     {
       name: 'description',
       title: 'Description',
       type: 'text',
       rows: 4,
-      validation: (Rule: any) => Rule.required()
+      validation: (Rule) => Rule.required()
     },
     {
       name: 'icon',
@@ -206,22 +284,14 @@ export const serviceSchema = {
       type: 'image',
       options: {
         hotspot: true
-      }
-    },
-    {
-      name: 'features',
-      title: 'Features',
-      type: 'array',
-      of: [{ type: 'string' }],
-      options: {
-        layout: 'list'
-      }
+      },
+      validation: (Rule) => Rule.required()
     },
     {
       name: 'order',
       title: 'Display Order',
       type: 'number',
-      validation: (Rule: any) => Rule.required().integer().positive()
+      validation: (Rule) => Rule.required().integer().positive()
     }
   ],
   orderings: [
@@ -233,50 +303,10 @@ export const serviceSchema = {
   ]
 };
 
-export const blockContentSchema = {
-  title: 'Block Content',
-  name: 'blockContent',
-  type: 'array',
-  of: [
-    {
-      title: 'Block',
-      type: 'block',
-      styles: [
-        { title: 'Normal', value: 'normal' },
-        { title: 'H1', value: 'h1' },
-        { title: 'H2', value: 'h2' },
-        { title: 'H3', value: 'h3' },
-        { title: 'H4', value: 'h4' },
-        { title: 'Quote', value: 'blockquote' }
-      ],
-      lists: [
-        { title: 'Bullet', value: 'bullet' },
-        { title: 'Numbered', value: 'number' }
-      ],
-      marks: {
-        decorators: [
-          { title: 'Strong', value: 'strong' },
-          { title: 'Emphasis', value: 'em' }
-        ],
-        annotations: [
-          {
-            title: 'URL',
-            name: 'link',
-            type: 'object',
-            fields: [
-              {
-                title: 'URL',
-                name: 'href',
-                type: 'url'
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      type: 'image',
-      options: { hotspot: true }
-    }
-  ]
-};
+// Export all schemas as default
+export default [
+  postSchema,
+  authorSchema,
+  projectSchema,
+  serviceSchema
+];

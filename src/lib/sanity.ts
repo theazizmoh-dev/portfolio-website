@@ -1,7 +1,7 @@
 import { createClient } from '@sanity/client';
 
 export const client = createClient({
-  projectId: 'your-project-id', // Replace with your Sanity project ID
+  projectId: 'mcq5uxln', // Replace with your Sanity project ID
   dataset: 'production',
   useCdn: true,
   apiVersion: '2024-01-01',
@@ -79,6 +79,11 @@ export interface Service {
   _id: string;
   title: string;
   description: string;
-  icon: string;
+  icon?: {
+    asset: {
+      _ref: string;
+    };
+  };
   features: string[];
+  order?: number;
 }
