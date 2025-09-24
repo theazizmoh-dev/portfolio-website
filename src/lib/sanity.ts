@@ -40,7 +40,8 @@ export const queries = {
     technologies,
     "image": image.asset->url,
     projectUrl,
-    githubUrl
+    githubUrl,
+    category
   }`,
 
   // Get all services
@@ -73,6 +74,7 @@ export interface Project {
   image: string;
   projectUrl?: string;
   githubUrl?: string;
+  category: 'landing' | 'ads' | 'before-after';
 }
 
 export interface Service {

@@ -225,30 +225,32 @@ export const projectSchema = {
       },
       validation: (Rule) => Rule.required()
     },
-    {
-      name: 'technologies',
-      title: 'Technologies',
-      type: 'array',
-      of: [{ type: 'string' }],
-      options: {
-        layout: 'tags'
-      }
-    },
+ 
     {
       name: 'projectUrl',
       title: 'Project URL',
       type: 'url'
     },
-    {
-      name: 'githubUrl',
-      title: 'GitHub URL',
-      type: 'url'
-    },
+   
     {
       name: 'order',
       title: 'Display Order',
       type: 'number',
       validation: (Rule) => Rule.required().integer().positive()
+    },
+    {
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Landing Pages', value: 'landing' },
+          { title: 'Creative Ads', value: 'ads' },
+          { title: 'Before & After', value: 'before-after' }
+        ],
+        layout: 'dropdown'
+      },
+      validation: (Rule) => Rule.required()
     }
   ],
   orderings: [

@@ -168,7 +168,7 @@ const Index = () => {
                   </a>
 
                   <a
-                    href="https://instagram.com"
+                    href="https://www.instagram.com/itsazizmo"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-between p-6 border-b border-border/30 hover:border-primary/50 transition-all duration-300 group hover:bg-primary/5"
